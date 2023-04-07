@@ -38,9 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    "django.contrib.staticfiles",
     'corsheaders',
     'rest_framework',
+    "users"
 ]
 CORS_ALLOW_ALL_ORIGINS = True
 # CORS_ALLOWED_ORIGINS = ["*"]
@@ -61,7 +62,9 @@ ROOT_URLCONF = 'django_app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        "DIRS": [
+            BASE_DIR / "templates",
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -79,16 +82,26 @@ WSGI_APPLICATION = 'django_app.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
+# Local
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': os.getenv('DATABASE'),
-        'CLIENT': {
-            'host': os.getenv('MONGODB_URI'),
-        }
+        'NAME': 'django',
+        'HOST': '127.0.0.1',
+        'PORT': 27017,
     }
 }
+
+# Production
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'NAME': os.getenv('DATABASE'),
+#         'CLIENT': {
+#             'host': os.getenv('MONGODB_URI'),
+#         }
+#     }
+# }
 
 
 # Password validation
